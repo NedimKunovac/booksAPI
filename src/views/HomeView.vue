@@ -1,9 +1,10 @@
 <template>
   <h1 class="text-3xl font-bold underline">BooksAPI</h1>
+  <SearchBar v-model:searchQuery="searchQuery"/>
 
   <div role="list" class="divide-y divide-gray-100 grid grid-cols-3 mx-20">
     <div
-      v-for="book in books"
+      v-for="book in filteredBooks"
       :key="book.id"
       class="flex justify-between gap-x-6 py-5 mx-8"
     >
@@ -24,15 +25,17 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 import axios from "axios";
 
+import SearchBar from "../components/SearchBar.vue";
 import LikeButton from "../components/LikeButton.vue";
 import BookModal from "../components/BookModal.vue";
 import BookItem from "../components/BookItem.vue";
 
 const books = ref([]);
 const selectedBook = ref(null);
+const searchQuery = ref('');
 
 const getBooks = async () => {
   try {
@@ -56,4 +59,8 @@ const openBookDetails = (book) => {
 const closeBookDetails = () => {
   selectedBook.value = null;
 };
+
+const filteredBooks = computed(() => {
+  return books.value.filter(book => book.title.toLowerCase().includes(searchQuery.value.toLowerCase()));
+});
 </script>
