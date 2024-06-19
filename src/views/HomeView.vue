@@ -5,7 +5,7 @@
   <div
     v-if="paginatedBooks.length > 0"
     role="list"
-    class="divide-y divide-gray-100 grid grid-cols-3 mx-20"
+    class="divide-y divide-gray-100 grid xl:grid-cols-3 mx-20 sm:grid-cols-1"
   >
     <div
       v-for="book in paginatedBooks"
