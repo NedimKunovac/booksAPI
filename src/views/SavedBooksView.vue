@@ -1,5 +1,5 @@
 <template>
-  <h1 class="text-3xl font-bold underline text-center bg-blue-300 py-4">Books in database</h1>
+  <h1 class="text-3xl font-bold underline text-center bg-blue-300 py-4 hover:text-blue-700" @click="$router.push('/')">Books in database</h1>
   <SearchBar v-model:searchQuery="searchQuery" />
 
   <div
