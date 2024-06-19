@@ -1,8 +1,12 @@
 <template>
   <h1 class="text-3xl font-bold underline text-center">BooksAPI</h1>
-  <SearchBar v-model:searchQuery="searchQuery"/>
+  <SearchBar v-model:searchQuery="searchQuery" />
 
-  <div v-if="paginatedBooks.length > 0" role="list" class="divide-y divide-gray-100 grid grid-cols-3 mx-20">
+  <div
+    v-if="paginatedBooks.length > 0"
+    role="list"
+    class="divide-y divide-gray-100 grid grid-cols-3 mx-20"
+  >
     <div
       v-for="book in paginatedBooks"
       :key="book.id"
@@ -17,23 +21,14 @@
   </div>
   <p v-else class="text-gray-500">No books found.</p>
 
-      <div class="flex justify-center items-center mt-6" v-if="totalPages > 1">
-      <button
-        @click="prevPage"
-        :disabled="currentPage === 1"
-        class="mr-2 bg-gray-300 text-gray-700 py-1 px-3 rounded disabled:opacity-50"
-      >
-        Previous
-      </button>
-      <span>Page {{ currentPage }} of {{ totalPages }}</span>
-      <button
-        @click="nextPage"
-        :disabled="currentPage === totalPages"
-        class="ml-2 bg-gray-300 text-gray-700 py-1 px-3 rounded disabled:opacity-50"
-      >
-        Next
-      </button>
-    </div>
+  <div class="flex justify-center items-center mt-6" v-if="totalPages > 1">
+    <PaginationButtons
+      :currentPage="currentPage"
+      :totalPages="totalPages"
+      @previous-page="previousPage"
+      @next-page="nextPage"
+    />
+  </div>
 
   <BookModal
     v-if="selectedBook"
@@ -51,10 +46,11 @@ import SearchBar from "../components/SearchBar.vue";
 import LikeButton from "../components/LikeButton.vue";
 import BookModal from "../components/BookModal.vue";
 import BookItem from "../components/BookItem.vue";
+import PaginationButtons from "../components/PaginationButtons.vue";
 
 const books = ref([]);
 const selectedBook = ref(null);
-const searchQuery = ref('');
+const searchQuery = ref("");
 
 const currentPage = ref(1);
 const itemsPerPage = ref(12);
@@ -83,13 +79,12 @@ const closeBookDetails = () => {
 };
 
 const filteredBooks = computed(() => {
-  return books.value.filter(book => book.title.toLowerCase().includes(searchQuery.value.toLowerCase()));
+  return books.value.filter((book) =>
+    book.title.toLowerCase().includes(searchQuery.value.toLowerCase())
+  );
 });
 
 const totalPages = computed(() => {
-    console.log(filteredBooks.value.length);
-    console.log(itemsPerPage.value);
-    console.log(Math.ceil(filteredBooks.value.length / itemsPerPage.value));
   return Math.ceil(filteredBooks.value.length / itemsPerPage.value);
 });
 
@@ -105,7 +100,7 @@ const nextPage = () => {
   }
 };
 
-const prevPage = () => {
+const previousPage = () => {
   if (currentPage.value > 1) {
     currentPage.value -= 1;
   }
