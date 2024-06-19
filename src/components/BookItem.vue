@@ -5,7 +5,7 @@
       :src="book.cover_image"
       alt=""
     />
-    <div class="min-w-0 flex-auto">
+    <div class="min-w-0 h-18 flex-auto">
       <p
         @click="openDetails"
         class="text-sm font-semibold leading-6 text-gray-900"
@@ -15,13 +15,13 @@
       <p class="mt-1 truncate text-xs leading-5 text-gray-500">
         {{ book.author }}
       </p>
-    </div>
-  </div>
-  <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-    <p class="text-sm leading-6 text-gray-900">
+      <p class="text-sm leading-6 text-gray-900">
       {{ book.publication_year }}
     </p>
-    <LikeButton :isLiked="book.isLiked" @like="$emit('like')" />
+    </div>
+  </div>
+  <div class="shrink-0 sm:flex sm:flex-col sm:items-end my-2">
+    <LikeButton :bookId="book.id" />
   </div>
 </template>
 

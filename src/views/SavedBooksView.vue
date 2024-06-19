@@ -1,5 +1,5 @@
 <template>
-  <h1 class="text-3xl font-bold underline text-center">Books in database</h1>
+  <h1 class="text-3xl font-bold underline text-center bg-blue-300 py-4">Books in database</h1>
   <SearchBar v-model:searchQuery="searchQuery" />
 
   <div
@@ -19,7 +19,7 @@
       />
     </div>
   </div>
-  <p v-else class="text-gray-500">No books found.</p>
+  <p v-else class="text-gray-500 mx-24 text-l mt-2 text-center">No books found..</p>
 
   <div class="flex justify-center items-center mt-6" v-if="totalPages > 1">
     <PaginationButtons

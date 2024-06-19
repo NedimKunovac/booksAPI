@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label for="price" class="block text-sm font-medium leading-6 text-gray-900 text-center"
+    <label for="price" class="block text-sm font-large leading-6 text-gray-900 mt-2 mx-24"
       >SEARCH FOR BOOKS</label
     >
     <div class="relative mt-2 mx-20 rounded-md shadow-sm">
