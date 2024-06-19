@@ -22,7 +22,6 @@
       {{ book.publication_year }}
     </p>
     <LikeButton :isLiked="book.isLiked" @like="$emit('like')" />
-    <!--<SaveBookButton :book="book" @save-book="saveBookData"/>-->
   </div>
 </template>
 
@@ -30,7 +29,6 @@
 import { defineProps, defineEmits } from "vue";
 import axios from "axios";
 import LikeButton from "./LikeButton.vue";
-import SaveBookButton from "./SaveBookButton.vue";
 
 const props = defineProps({
   book: Object,
@@ -43,18 +41,4 @@ const openDetails = () => {
   emit("open-details");
 };
 
-// WIP
-// const saveBookData = async (book) => {
-//   try {
-//     console.log
-//     const response = await axios.post('http://127.0.0.1:8000/books', book, {
-//       headers: {
-//         'Content-Type': 'application/json'
-//       }
-//     });
-//     console.log(response.data);
-//   } catch (error) {
-//     console.error('Error sending book data:', error);
-//   }
-// };
 </script>

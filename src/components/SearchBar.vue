@@ -1,9 +1,9 @@
 <template>
   <div>
-    <label for="price" class="block text-sm font-medium leading-6 text-gray-900"
+    <label for="price" class="block text-sm font-medium leading-6 text-gray-900 text-center"
       >SEARCH FOR BOOKS</label
     >
-    <div class="relative mt-2 rounded-md shadow-sm">
+    <div class="relative mt-2 mx-20 rounded-md shadow-sm">
       <input
         type="text"
         v-model="localSearchQuery"
