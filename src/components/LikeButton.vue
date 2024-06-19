@@ -2,8 +2,8 @@
   <button
     type="button"
     @click="likeAction"
-    :class="`text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500 ${
-      isLiked ? 'bg-blue-500' : 'bg-white'
+    :class="`border border-blue-500 hover:bg-blue-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center ${
+      isLiked ? 'bg-blue-500 text-white ' : 'text-blue-500'
     }`"
   >
     <svg
@@ -21,15 +21,18 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from "vue";
+import { defineProps, computed } from 'vue';
+import { useLikeStore } from '../stores/likeStore';
 
 const props = defineProps({
-  isLiked: Boolean,
+  bookId: Number
 });
 
-const emit = defineEmits(["like"]);
+const likeStore = useLikeStore();
+
+const isLiked = computed(() => likeStore.isLiked(props.bookId));
 
 const likeAction = () => {
-  emit("like");
+  likeStore.likeAction(props.bookId);
 };
 </script>

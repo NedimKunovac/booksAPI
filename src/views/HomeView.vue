@@ -1,11 +1,11 @@
 <template>
-  <h1 class="text-3xl font-bold underline text-center">BooksAPI</h1>
+  <h1 class="text-3xl font-bold underline text-center bg-blue-300 py-4">Books API</h1>
   <SearchBar v-model:searchQuery="searchQuery" />
 
   <div
     v-if="paginatedBooks.length > 0"
     role="list"
-    class="divide-y divide-gray-100 grid grid-cols-3 mx-20"
+    class="divide-y divide-gray-100 grid xl:grid-cols-3 mx-20 sm:grid-cols-1"
   >
     <div
       v-for="book in paginatedBooks"
@@ -19,7 +19,7 @@
       />
     </div>
   </div>
-  <p v-else class="text-gray-500">No books found.</p>
+  <p v-else class="text-gray-500 mx-24 text-l mt-2 text-center">No books found..</p>
 
   <div class="flex justify-center items-center mt-6" v-if="totalPages > 1">
     <PaginationButtons
@@ -65,10 +65,6 @@ const getBooks = async () => {
 };
 
 onMounted(getBooks);
-
-const likeAction = (book) => {
-  book.isLiked = !book.isLiked;
-};
 
 const openBookDetails = (book) => {
   selectedBook.value = { ...book };
