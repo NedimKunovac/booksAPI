@@ -25,7 +25,7 @@
             </div>
           </div>
         </div>
-        <div class="bg-gray-50 py-3 flex flex-row-reverse mx-4 px-4">
+        <div class="bg-white pb-3 flex flex-row-reverse mx-4 px-4">
           <LikeButton :bookId="book.id" />
           <button
             @click="closeDetails"
